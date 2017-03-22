@@ -6,15 +6,15 @@ Junior Data Analyst Data Test
 
 ### Conceptual Questions
 
-> 1.  A data set contains data for 350 manufacturing companies in Europe. The following variables are included in the data for each company: industry, number of employees, salary of the CEO, and total profit. We are interested in learning which variables impact the CEO's salary.
+> A data set contains data for 350 manufacturing companies in Europe. The following variables are included in the data for each company: industry, number of employees, salary of the CEO, and total profit. We are interested in learning which variables impact the CEO's salary.
 
 -   The CEO's salary is a continuous variable, so you're looking at a regression model. The goal is to learn how the different data fields affect the salary, not to predict it, so it would be an inference model. There are 350 entries in the data set, and the predictors are the industy, number of employees, and total profits of the company.
 
-> 1.  A market research company is hired to help a start-up analyze their new product. We want to know whether the product will be a success or failure. Similar products exist on the market so the market research company gathers data on 31 similar products. The company records the following data points about each previously launched product: price of the product, competition price, marketing budget, ten other variables, and whether or not it succeeded or failed.
+> A market research company is hired to help a start-up analyze their new product. We want to know whether the product will be a success or failure. Similar products exist on the market so the market research company gathers data on 31 similar products. The company records the following data points about each previously launched product: price of the product, competition price, marketing budget, ten other variables, and whether or not it succeeded or failed.
 
 -   You're trying to decide how the different data fields work together to answer a binary question, so this would be a classification model. Because you want to use this model to make decisions about future products, it would be a Prediction model. There are 31 entries in the data set, and the predictors are the price of the product, competition price, marketing budget, and the ten other variables(presumeably).
 
-> 1.  Every week data is collected for the world stock market in 2012. The data points collected include the % change in the dollar, the % change in the market in the United States, the % change in the market in China, and the % change in the market in France. We are interested in predicting the % change in the dollar in relation to the changes every week in the world stock markets.
+> Every week data is collected for the world stock market in 2012. The data points collected include the % change in the dollar, the % change in the market in the United States, the % change in the market in China, and the % change in the market in France. We are interested in predicting the % change in the dollar in relation to the changes every week in the world stock markets.
 
 -   The changing value of the dollar is a continuous variable, so you're looking at a regression model. The goal is to predict how the value of the dollar will change given the value of other markets, so it would be a prediction model. Since the data is collected weekly, there should be 52 entries in the data, and the predictors are the percent change in the three markets: United States, China, and France.
 
@@ -29,14 +29,14 @@ if(!"Cars_mileage.csv" %in% dir())
 data <- read.csv("Cars_mileage.csv")
 ```
 
-> 1.  Create a binary variable that represents whether the car's mpg is above or below the dataset's median. Above the median should be represented as 1. Name this variable mpg\_binary.
+> Create a binary variable that represents whether the car's mpg is above or below the dataset's median. Above the median should be represented as 1. Name this variable mpg\_binary.
 
 ``` r
 median_mpg <- median(data$mpg, na.rm=TRUE)
 data$mpg_binary <- ifelse(data$mpg >= median_mpg,1,0)
 ```
 
-> 1.  Which of the other variables seem most likely to be useful in predicting whether a car's mpg is above or below its median? Describe your findings and submit visual representations of the relationship between mpg\_binary and other variables.
+> Which of the other variables seem most likely to be useful in predicting whether a car's mpg is above or below its median? Describe your findings and submit visual representations of the relationship between mpg\_binary and other variables.
 
 -   The Horsepower field has some non-numeric entries, so replace them with the average horsepower value while un-factoring the column. There are relatively few such values, so inputting the average shouldn't affect the results significantly.
 
@@ -97,7 +97,7 @@ ggscatter(data, x = "mpg", y = "cylinders", add = "loess", conf.int = TRUE, cor.
 
 -   Based on the regression plots, Weight and Displacement have strong correlation values (greater than .8) so they would likely be the best predictors. With Horsepower and Cylinders not being too far behind (both at .78), they could also be useful. Acceleration and year appear way too scattered to be of much use.
 
-> 1.  Split the data into a training set and a test set.
+> Split the data into a training set and a test set.
 
 -   Since we're using the median as our break-point, roughly half of the data will be above and below, so it seems safe to take a random sampling of the data. I chose to use 75% of the data to train, leaving the remaining 25% to test. Also, only take the columns that we'll be using.
 
@@ -109,7 +109,7 @@ d.train <- data[training_rows,c(2:7,10)]
 d.test <- data[-training_rows,c(2:7,10)]
 ```
 
-> 1.  Perform two of the following in order to predict mpg\_binary
+> Perform two of the following in order to predict mpg\_binary
 
 #### K-nearest neighbors
 
